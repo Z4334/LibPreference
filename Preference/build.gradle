@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'maven' // Name of the Bintray repo you created
+    bintrayName = 'com.apps.utility:Preference' // Bintray package name
+
+    publishedGroupId = 'com.apps.utility' // Group ID of the SDK which will be added in implementation line of gradle
+    artifact = 'Preference' // Artifact ID of the SDK which will be added in implementation line of gradle
+    libraryVersion = '0.0.1' // Version of the library you created in Bintray
+
+    libraryName = 'Preference Utlity' // It is generally the module name
+    libraryDescription = 'Utlity to use shared preference in your app.' // Small description of the library
+
+    /*siteUrl = 'https://github.com/mohitrajput987/android-utility'
+    gitUrl = 'https://github.com/mohitrajput987/android-utility.git'
+
+    developerId = 'ourtechnobytes'
+    developerName = 'Our Techno Bytes'
+    developerEmail = 'info@ourtechnobytes.com'*/
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    //Bintray Credentials
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintrayUsername = properties.getProperty('Zahoor')
+    bintrayUserOrg = properties.getProperty('self-org')
+    bintrayApiKey = properties.getProperty('7f757a17c5ef7a3c443c6ce8af6c952a25466ce1')
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+   /* testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'*/
+}
+//apply from: 'bintray.script'
